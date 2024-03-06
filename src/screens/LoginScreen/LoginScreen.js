@@ -17,26 +17,26 @@ const LoginScreen = () => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  // const onSignInPressed = () => {
-  //   const emailRegex = /\S+@\S+\.\S+/;
+  const onSignInPressed = () => {
+    const emailRegex = /\S+@\S+\.\S+/;
     
-  //   if (!username) {
-  //     setUsernameError(Alert.alert('Lỗi', 'Vui lòng nhập tài khoản'));
-  //     return;
-  //   }
+    if (!username) {
+      setUsernameError(Alert.alert('Lỗi', 'Vui lòng nhập tài khoản'));
+      return;
+    }
   
-  //   if (!emailRegex.test(username)) {
-  //     setUsernameError(Alert.alert('Lỗi', 'Tài khoản không hợp lệ'));
-  //     return;
-  //   }
+    if (!emailRegex.test(username)) {
+      setUsernameError(Alert.alert('Lỗi', 'Tài khoản không hợp lệ'));
+      return;
+    }
   
-  //   if (!password) {
-  //     setPasswordError(Alert.alert('Lỗi', 'Vui lòng nhập mật khẩu'));
-  //     return;
-  //   }
+    if (!password) {
+      setPasswordError(Alert.alert('Lỗi', 'Vui lòng nhập mật khẩu'));
+      return;
+    }
   
-  //   navigation.navigate('MainHome');
-  // };
+    navigation.navigate('MainHome');
+  };
   
 
   const onForgotPasswordPressed = () => {

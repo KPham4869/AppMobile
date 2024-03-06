@@ -54,18 +54,18 @@ const ControlDeviceSceen = ({ navigation }) => {
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'Option1' && styles.selectedOption,
+                selectedOption === 'Quạt' && styles.selectedOption,
               ]}
-              onPress={() => handleOptionSelect('Option1')}>
-              <Text style={styles.optionText}>Option 1</Text>
+              onPress={() => handleOptionSelect('Quạt')}>
+              <Text style={styles.optionText}>Quạt</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'Option2' && styles.selectedOption,
+                selectedOption === 'Đèn' && styles.selectedOption,
               ]}
-              onPress={() => handleOptionSelect('Option2')}>
-              <Text style={styles.optionText}>Option 2</Text>
+              onPress={() => handleOptionSelect('Đèn')}>
+              <Text style={styles.optionText}>Đèn</Text>
             </TouchableOpacity>
           </>
         )}

@@ -1,8 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Navigation from './src/navigation';
-import SignUpScreen from './src/screens/SignUpScreen';
-import SignInScreen from './src/screens/SignInScreen';
+
 
 
 
