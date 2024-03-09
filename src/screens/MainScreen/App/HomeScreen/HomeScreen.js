@@ -2,17 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, SafeAreaView, Image, StyleSheet, Switch, Text, TouchableOpacity, PanResponder } from 'react-native';
 import menu from '../../../../../assets/image/menu.png';
 import thermometer from '../../../../../assets/image/thermometer.png';
+import { colors } from '@mui/material';
 
-const API_KEY = '89e540382ebe3310999da425312cf172'; // API key của bạn
+const API_KEY = '89e540382ebe3310999da425312cf172'; 
 
 const HomeAppScreen = ({ navigation }) => {
   const [isSwitch1Enabled, setSwitch1Enabled] = useState(false);
   const [isSwitch2Enabled, setSwitch2Enabled] = useState(false);
+  const [isSwitch3Enabled, setSwitch3Enabled] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
   const [currentTemperature, setCurrentTemperature] = useState(null);
 
-  const toggleSwitch1 = () => setSwitch1Enabled(prevState => !prevState);
-  const toggleSwitch2 = () => setSwitch2Enabled(prevState => !prevState);
+  const toggleSwitch1 = () => setSwitch1Enabled(prevState1 => !prevState1);
+  const toggleSwitch2 = () => setSwitch2Enabled(prevState2 => !prevState2);
+  const toggleSwitch3 = () => setSwitch3Enabled(prevState3 => !prevState3);
 
   const [value, setValue] = useState(0);
   const panResponder = useRef(
@@ -41,7 +44,6 @@ const HomeAppScreen = ({ navigation }) => {
     }
   };
 
-
   useEffect(() => {
     // Lấy thời gian hiện tại
     const interval = setInterval(() => {
@@ -69,46 +71,62 @@ const HomeAppScreen = ({ navigation }) => {
       <TouchableOpacity onPress={navigation.goBack}>
         <Image source={menu} style={styles.menu} />
       </TouchableOpacity>
-
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.speedText}>{currentTime}</Text>
+          <Text style={styles.text_f}>Hello, Phan Hữu Hào</Text>
+          <Text style={styles.text_f}>{currentTime}</Text>
           <View style={styles.thermometerContainer}>
             <Image source={thermometer} style={styles.thermometer} />
-            <Text style={styles.speedText}>{currentTemperature}°C</Text>
+            <Text style={styles.text_f}>{currentTemperature}°C</Text>
           </View>
         </View>
 
-        <View style={styles.switchContainer}>
-          <View style={styles.switchRow}>
-            <Text style={styles.emoji}>💡</Text>
+        <View style={styles.bodySwitch1}>
+        <View style={[styles.switchContainer1, styles.switchContainer]}>
+            <Text style={styles.text}> Đèn Phòng khách </Text>
+            <View style={styles.switchRow}>
+              <Text style={styles.emoji}>💡</Text>
+              <Switch
+                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                thumbColor={isSwitch1Enabled ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch1}
+                value={isSwitch1Enabled}
+              />
+            </View>
+          </View>
+          <View style={[styles.switchContainer2, styles.switchContainer]}>
+            <Text style={styles.text}> Quạt Phòng khách </Text>
+            <View style={styles.switchRow}>
+              <Text style={styles.emoji}>❄️</Text>
             <Switch
-              trackColor={{ false: '#767577', true: '#81b0ff' }}
-              thumbColor={isSwitch1Enabled ? '#f5dd4b' : '#f4f3f4'}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch1}
-              value={isSwitch1Enabled}
-            />
+                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                thumbColor={isSwitch2Enabled ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch2}
+                value={isSwitch2Enabled}
+              />
+            </View>
           </View>
         </View>
-        <View style={styles.switchContainer}>
-          <View style={styles.switchRow}>
-            <Text style={styles.emoji}>❄️</Text>
-            <Switch
-              trackColor={{ false: '#767577', true: '#81b0ff' }}
-              thumbColor={isSwitch2Enabled ? '#f5dd4b' : '#f4f3f4'}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch2}
-              value={isSwitch2Enabled} 
-            />
+
+        <View style={styles.bodySwitch}>
+        <View style={[styles.switchContainer3, styles.switchContainer]}>
+            <Text style={styles.text}> Đèn Phòng ngủ </Text>
+            <View style={styles.switchRow}>
+              <Text style={styles.emoji}>💡</Text>
+              <Switch
+                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                thumbColor={isSwitch3Enabled ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch3}
+                value={isSwitch3Enabled}
+              />
+            </View>
           </View>
-          <Text style={styles.text}>Tốc độ: {value}</Text>
-          <View style={styles.bar} {...panResponder.panHandlers}>
-            <View style={[styles.segment, { backgroundColor: '#3CC1C1', width: segmentFilled }]} />
-            <View style={[styles.segment, { backgroundColor: '#ccc', width: barWidth - segmentFilled }]} />
-          </View>
-          <TouchableOpacity style={styles.touchArea} onPress={handlePress} />
         </View>
+
+        {/* ... */}
       </View>
     </SafeAreaView>
   );
@@ -117,68 +135,69 @@ const HomeAppScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
+    backgroundColor: '#fff',
+  },
+  menu: {
+    width: 24,
+    height: 24,
+    margin: 16,
   },
   container: {
     flex: 1,
     alignItems: 'center',
     // justifyContent: 'center',
   },
-  menu: {
-    width: 25,
-    height: 25,
-    top: 10,
-    left: 10,
-    padding: 10,
-  },
-  emoji: {
-    fontSize: 40,
-  },
   header: {
-    alignItems: 'center',
+    // alignItems: 'center',
     marginTop: 10,
-  },
-  speedText: {
-    fontSize: 20,
-    marginBottom: 10,
-  },
+    backgroundColor: 'rgba(175, 238, 238)',
+    width: '95%',
+    height: 'auto',
+    borderRadius: 5,
+    borderColor: '#000',
+    borderWidth: 1,
+    
+    
+    },
+    text_f:{
+      fontSize: 20,
+
+    },
   thermometerContainer: {
     // flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   thermometer: {
-    width: 30,
-    height: 30,
+    width: 24,
+    height: 24,
+    marginRight: 8,
+  },
+  bodySwitch1: {
+    flexDirection: 'row',
   },
   switchContainer: {
     marginVertical: 10,
     borderRadius: 15,
     padding: 10,
     backgroundColor: 'rgba(175, 238, 238, 0.8)',
-  },
+    borderColor: '#000',
+    borderWidth: 1,
+    borderStyle: 'dotted'
+    },
+    switchContainer1:{
+      marginRight: 20,
+    },
   switchRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   text: {
-    fontSize: 18,
-    marginBottom: 10,
+    fontSize: 16,
+    marginBottom: 8,
   },
-  bar: {
-    flexDirection: 'row',
-    width: 300,
-    height: 20,
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
-  segment: {
-    height: '100%',
-  },
-  touchArea: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
+  emoji: {
+    fontSize: 32,
+    marginRight: 8,
   },
 });
 
