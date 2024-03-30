@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, SafeAreaView, Image, StyleSheet, Switch, Text, TouchableOpacity, PanResponder } from 'react-native';
+import { View, SafeAreaView, Image, StyleSheet, Switch, Text, TouchableOpacity, PanResponder, ImageBackground } from 'react-native';
 import menu from '../../../../../assets/image/menu.png';
 import thermometer from '../../../../../assets/image/thermometer.png';
 import { colors } from '@mui/material';
+import plus from '../../../../../assets/image/plus.png'
+import bgr from '../../../../../assets/image/bgr1.jpg'
+
 
 const API_KEY = '89e540382ebe3310999da425312cf172'; 
 
@@ -67,20 +70,23 @@ const HomeAppScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
+    <ImageBackground source={bgr} resizeMode="stretch" style={styles.background}>
+      <SafeAreaView style={styles.safeAreaView} >
       <TouchableOpacity onPress={navigation.goBack}>
         <Image source={menu} style={styles.menu} />
       </TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.header}>
+          {/* Xử lý dữ liệu backend */}
           <Text style={styles.text_f}>Hello, Phan Hữu Hào</Text>
-          <Text style={styles.text_f}>{currentTime}</Text>
           <View style={styles.thermometerContainer}>
+          <Text style={styles.text_f}>{currentTime}</Text>
             <Image source={thermometer} style={styles.thermometer} />
             <Text style={styles.text_f}>{currentTemperature}°C</Text>
           </View>
         </View>
 
+        <View style={styles.container_switch}>
         <View style={styles.bodySwitch1}>
         <View style={[styles.switchContainer1, styles.switchContainer]}>
             <Text style={styles.text}> Đèn Phòng khách </Text>
@@ -124,28 +130,60 @@ const HomeAppScreen = ({ navigation }) => {
               />
             </View>
           </View>
+          <View style={[styles.switchAdd, styles.switchContainer]} >
+            <Image source={plus} style={styles.plus}/>
+          </View>
         </View>
 
+        </View>
         {/* ... */}
       </View>
     </SafeAreaView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    shadowColor: '#',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
+  },
   safeAreaView: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(126, 126, 126, 0.4)',
   },
   menu: {
     width: 24,
     height: 24,
     margin: 16,
   },
+  container_switch:{
+    borderColor: '#000',
+    // borderWidth: 1,
+    padding : 20,
+    width: '95%',
+    marginTop: 10,
+    flexDirection: 'column'
+  },
+ 
   container: {
     flex: 1,
     alignItems: 'center',
     // justifyContent: 'center',
+  },
+  switchAdd:{
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   header: {
     // alignItems: 'center',
@@ -155,17 +193,22 @@ const styles = StyleSheet.create({
     height: 'auto',
     borderRadius: 5,
     borderColor: '#000',
-    borderWidth: 1,
+    // borderWidth: 1,
     
     
+    },
+    switchContainer3:{
+      width: '48%',
+      marginRight: 20,
     },
     text_f:{
       fontSize: 20,
-
+      marginHorizontal: 10,
     },
   thermometerContainer: {
+    marginTop: 20,
     // flexDirection: 'row',
-    // alignItems: 'center',
+    alignItems: 'center',
   },
   thermometer: {
     width: 24,
@@ -173,6 +216,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   bodySwitch1: {
+    flexDirection: 'row',
+  },
+  bodySwitch: {
     flexDirection: 'row',
   },
   switchContainer: {
@@ -187,6 +233,7 @@ const styles = StyleSheet.create({
     switchContainer1:{
       marginRight: 20,
     },
+    
   switchRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -198,6 +245,10 @@ const styles = StyleSheet.create({
   emoji: {
     fontSize: 32,
     marginRight: 8,
+  },
+  plus: {
+    height: 30,
+    width: 30,
   },
 });
 

@@ -1,10 +1,11 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, TextInput, ScrollView, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 import Logo from '../../../assets/image/logo.jpeg'
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native'
+import back from '../../../assets/image/back.png'
 
 
 
@@ -49,6 +50,9 @@ const LoginScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <TouchableOpacity onPress={navigation.goBack}>
+      <Image source={back} style={styles.back}/>
+    </TouchableOpacity>
       <View style={styles.root}>
         <Image
           source={Logo}
@@ -93,12 +97,20 @@ const styles = StyleSheet.create({
     // backgroundColor: '#AFEEEE',
   },
   logo:{
-    marginTop: 60,
+    marginTop: 30,
     width: '80%',
     maxWidth: 400,
     maxHeight: 300,
     borderRadius: 20,
     marginBottom: 20,
+  },
+  back: {
+    // position: 'absolute',
+    width: 25,
+    height: 25,
+    top: 10,
+    left: 10,
+    padding: 10,
   },
 });
 

@@ -13,6 +13,7 @@ import home from '../../../assets/image/home.png'
 import add from '../../../assets/image/users.png'
 import notification from '../../../assets/image/alarm.png'
 import smart from '../../../assets/image/app.png'
+import chat from '../../../assets/image/chat.png'
 
 
 
@@ -133,12 +134,13 @@ const MainScreen = () => {
   options={{
     tabBarIcon: ({focused}) => (
       <Image 
-        source={micro} 
+        source={chat} 
         style={{
           width: 40,
           height: 40,
-          tintColor: focused ? '#E32F45' : '#fff',
+          // tintColor: focused ? '#E32F45' : '#fff',
           marginTop: 10,
+          // tintColor: focused ? '#E32F45' : '#748C94',
         }}
       />
     ),
