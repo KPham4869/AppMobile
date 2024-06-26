@@ -78,7 +78,7 @@ const HomeAppScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.header}>
           {/* Xử lý dữ liệu backend */}
-          <Text style={styles.text_f}>Hello, Phan Hữu Hào</Text>
+          <Text style={styles.text_f}>Hello, I'm Friday</Text>
           <View style={styles.thermometerContainer}>
           <Text style={styles.text_f}>{currentTime}</Text>
             <Image source={thermometer} style={styles.thermometer} />
